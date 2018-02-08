@@ -586,7 +586,7 @@ do                                                              \
     }                                                           \
   else                                                          \
     {                                                           \
-      yyerror (YY_("syntax error: cannot back up")); \
+     // yyerror (YY_("syntax error: cannot back up")); \
       YYERROR;                                                  \
     }                                                           \
 while (0)
@@ -998,6 +998,11 @@ int yynerrs;
 /*----------.
 | yyparse.  |
 `----------*/
+
+int yylex()
+{
+	return 0;
+}
 
 int
 yyparse (void)
@@ -1422,7 +1427,7 @@ yyerrlab:
     {
       ++yynerrs;
 #if ! YYERROR_VERBOSE
-      yyerror (YY_("syntax error"));
+      //yyerror (YY_("syntax error"));
 #else
 # define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
                                         yyssp, yytoken)
@@ -1566,7 +1571,7 @@ yyabortlab:
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
-  yyerror (YY_("memory exhausted"));
+ // yyerror (YY_("memory exhausted"));
   yyresult = 2;
   /* Fall through.  */
 #endif
