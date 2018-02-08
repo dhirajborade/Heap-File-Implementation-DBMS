@@ -1,0 +1,22 @@
+﻿  DBFile.cc
+  File.cc
+File.cc(187): error C3861: 'lseek': identifier not found
+File.cc(188): error C3861: 'read': identifier not found
+File.cc(207): error C3861: 'lseek': identifier not found
+File.cc(208): error C3861: 'write': identifier not found
+File.cc(224): error C3861: 'lseek': identifier not found
+File.cc(225): error C3861: 'write': identifier not found
+File.cc(243): error C2065: 'S_IRUSR': undeclared identifier
+File.cc(243): error C2065: 'S_IWUSR': undeclared identifier
+File.cc(243): error C3861: 'open': identifier not found
+File.cc(259): error C3861: 'lseek': identifier not found
+File.cc(260): error C3861: 'read': identifier not found
+File.cc(277): error C3861: 'lseek': identifier not found
+File.cc(278): error C3861: 'write': identifier not found
+File.cc(281): error C3861: 'close': identifier not found
+  Generating Code...
+c:\users\agarw\documents\visual studio 2017\projects\a1test\dbfile.cc(17): error C4716: 'DBFile::Create': must return a value
+c:\users\agarw\documents\visual studio 2017\projects\a1test\dbfile.cc(23): error C4716: 'DBFile::Open': must return a value
+c:\users\agarw\documents\visual studio 2017\projects\a1test\dbfile.cc(29): error C4716: 'DBFile::Close': must return a value
+c:\users\agarw\documents\visual studio 2017\projects\a1test\dbfile.cc(35): error C4716: 'DBFile::GetNext': must return a value
+c:\users\agarw\documents\visual studio 2017\projects\a1test\dbfile.cc(38): error C4716: 'DBFile::GetNext': must return a value
