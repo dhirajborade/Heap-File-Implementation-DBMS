@@ -111,3 +111,12 @@ q12
 (l_shipmode = 'AIR') AND
 (l_linestatus = 'F') AND
 (l_tax < 0.07)
+
+
+
+
+
+
+
+
+
