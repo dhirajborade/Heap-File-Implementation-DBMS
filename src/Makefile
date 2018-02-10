@@ -7,8 +7,8 @@ tag = -n
 endif
 
 	
-main: Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o HeapFile.o y.tab.o lex.yy.o main.o
-	$(CC) -o main Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o HeapFile.o y.tab.o lex.yy.o main.o -lfl
+main: Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o HeapFile.o GenericDBFileBaseClass.o y.tab.o lex.yy.o main.o
+	$(CC) -o main Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o HeapFile.o GenericDBFileBaseClass.o y.tab.o lex.yy.o main.o -lfl
 	
 
 main.o: main.cc
@@ -18,8 +18,11 @@ Comparison.o: Comparison.cc
 	$(CC) -g -c Comparison.cc
 	
 ComparisonEngine.o: ComparisonEngine.cc
-	$(CC) -g -c ComparisonEngine.cc
+	$(CC) -g -c ComparisonEngine.cc	
 	
+GenericDBFileBaseClass.o: GenericDBFileBaseClass.cc
+	$(CC) -g -c GenericDBFileBaseClass.cc
+
 HeapFile.o: HeapFile.cc
 	$(CC) -g -c HeapFile.cc
 	
