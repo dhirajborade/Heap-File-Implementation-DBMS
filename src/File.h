@@ -30,12 +30,6 @@ public:
 	// records from it
 	void FromBinary (char *bits);
 
-	int GetCurrent(Record * currentOne);
-
-	void MoveToStart();
-
-	int GetNumRecs();
-
 	// the deletes the first record from a page and returns it; returns
 	// a zero if there were no records on the page
 	int GetFirst (Record *firstOne);
@@ -64,14 +58,16 @@ public:
 
 	// returns the current length of the file, in pages
 	//off_t GetLength ();
-	off_t GetLength() const { return curLength; }
+	off_t GetLength()  { return curLength; }
 
-	bool empty() const { return curLength == 0; }
+	bool empty()  { return curLength == 0; }
 
 	/**
 	* gets the index of the last page in the file
 	*/
-	off_t lastIndex() const { return curLength - 2; }
+	off_t lastIndex()  { return curLength - 2; }
+	// returns the current length of the file, in pages
+	//off_t GetLength ();
 
 	// opens the given file; the first parameter tells whether or not to
 	// create the file.  If the parameter is zero, a new file is created
@@ -90,6 +86,11 @@ public:
 
 	// closes the file and returns the file length (in number of pages)
 	int Close ();
+	
+	void addPage(Page* addMe) {
+          if(empty()) AddPage(addMe, 0);
+          else AddPage(addMe, lastIndex()+1);
+        }
 
 };
 

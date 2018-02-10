@@ -1,14 +1,12 @@
 #include "File.h"
 #include "TwoWayList.cc"
-
 #include <sys/types.h>
 #include <sys/stat.h>
-//#include <unistd.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
 #include <iostream>
 #include <stdlib.h>
-#include<io.h>
 
 
 
@@ -137,9 +135,8 @@ void Page :: FromBinary (char *bits) {
 	}
 
 	curSizeInBytes = sizeof (int);
-	for (int i = 0; i < 66; i++) {
+	for (int i = 0; i < numRecs; i++) {
 
-		cout << i;
 		// get the length of the current record
 		int len = ((int *) curPos)[0];
 		curSizeInBytes += len;
@@ -165,28 +162,6 @@ File :: ~File () {
 }
 
 
-// fetch current record and store the record datastructure in bits
-int Page::GetCurrent(Record *currentOne) {
-
-	//cout << "rightLength: " << myRecs->RightLength() << endl;
-	//Get current Record
-	if (!myRecs->RightLength()) {
-		return 0;
-	}
-	else {
-		Record * tmpRec = myRecs->Current(0);
-		currentOne->Copy(tmpRec);
-		myRecs->Advance();
-		return 1;
-	}
-}
-void Page::MoveToStart() {
-	myRecs->MoveToStart();
-
-}
-int Page::GetNumRecs() {
-	return numRecs;
-}
 void File :: GetPage (Page *putItHere, off_t whichPage) {
 
 	// this is because the first page has no data
@@ -212,7 +187,8 @@ void File :: GetPage (Page *putItHere, off_t whichPage) {
 	delete [] bits;
 	
 }
-	
+
+
 void File :: AddPage (Page *addMe, off_t whichPage) {
 
 	// this is because the first page has no data
@@ -251,7 +227,7 @@ void File :: AddPage (Page *addMe, off_t whichPage) {
 }
 
 
-void File :: Open (int fileLen,  const char *fName) {
+void File :: Open (int fileLen, const char *fName) {
 
 	// figure out the flags for the system open call
         int mode;
@@ -261,8 +237,7 @@ void File :: Open (int fileLen,  const char *fName) {
                 mode = O_RDWR;
 
 	// actually do the open
-     //   myFilDes = open (fName, mode, S_IRUSR | S_IWUSR);
-		myFilDes = open(fName, mode, S_IREAD| S_IWRITE);
+        myFilDes = open (fName, mode, S_IRUSR | S_IWUSR);
 
 #ifdef verbose
 	cout << "Opening file " << fName << " with "<< curLength << " pages.\n";
@@ -288,6 +263,9 @@ void File :: Open (int fileLen,  const char *fName) {
 }
 
 
+/*off_t File :: GetLength () {
+	return curLength;
+}*/
 
 
 int File :: Close () {

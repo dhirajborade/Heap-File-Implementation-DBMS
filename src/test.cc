@@ -3,9 +3,9 @@
 #include "test.h"
 
 // make sure that the file path/dir information below is correct
- const char *dbfile_dir = "C:\\Users\\agarw\\Documents\\Visual Studio 2017\\Projects\\a1test\\"; // dir where binary heap files should be stored
- const char *tpch_dir ="C:\\"; // dir where dbgen tpch files (extension *.tbl) can be found
- const char *catalog_path = "catalog"; // full path of the catalog file
+const char *dbfile_dir = ""; // dir where binary heap files should be stored
+const char *tpch_dir ="/cise/tmp/dbi_sp11/DATA/10M/"; // dir where dbgen tpch files (extension *.tbl) can be found
+const char *catalog_path = "catalog"; // full path of the catalog file
 
 using namespace std;
 
@@ -14,7 +14,7 @@ relation *rel;
 // load from a tpch file
 void test1 () {
 
-	DBFile dbfile;// = new DBFile();
+	DBFile dbfile;
 	cout << " DBFile will be created at " << rel->path () << endl;
 	dbfile.Create (rel->path(), heap, NULL);
 
@@ -24,7 +24,6 @@ void test1 () {
 
 	dbfile.Load (*(rel->schema ()), tbl_path);
 	dbfile.Close ();
-	cout << "done";
 }
 
 // sequential scan of a DBfile 
@@ -76,7 +75,6 @@ void test3 () {
 }
 
 int main () {
-
 
 	setup (catalog_path, dbfile_dir, tpch_dir);
 

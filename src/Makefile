@@ -6,14 +6,10 @@ ifdef linux
 tag = -n
 endif
 
-test.out: Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o y.tab.o lex.yy.o test.o
-	$(CC) -o test.out Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o y.tab.o lex.yy.o test.o -lfl
 	
-main: Record.o Comparison.o ComparisonEngine.o Schema.o File.o y.tab.o lex.yy.o main.o
-	$(CC) -o main Record.o Comparison.o ComparisonEngine.o Schema.o File.o y.tab.o lex.yy.o main.o -lfl
+main: Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o HeapFile.o y.tab.o lex.yy.o main.o
+	$(CC) -o main Record.o Comparison.o ComparisonEngine.o Schema.o File.o DBFile.o HeapFile.o y.tab.o lex.yy.o main.o -lfl
 	
-test.o: test.cc
-	$(CC) -g -c test.cc
 
 main.o: main.cc
 	$(CC) -g -c main.cc
@@ -23,6 +19,9 @@ Comparison.o: Comparison.cc
 	
 ComparisonEngine.o: ComparisonEngine.cc
 	$(CC) -g -c ComparisonEngine.cc
+	
+HeapFile.o: HeapFile.cc
+	$(CC) -g -c HeapFile.cc
 	
 DBFile.o: DBFile.cc
 	$(CC) -g -c DBFile.cc
